@@ -1,25 +1,6 @@
-/*********************************************************
-					Multiprotocol Tx code
-               by Midelic and Pascal Langer(hpnuts)
-	http://www.rcgroups.com/forums/showthread.php?t=2165676
-    https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/edit/master/README.md
 
-	Thanks to PhracturedBlue, Hexfet, Goebish, Victzh and all protocol developers
-				Ported  from deviation firmware 
+#define STM32_BOARD
 
- This project is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-
- Multiprotocol is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with Multiprotocol.  If not, see <http://www.gnu.org/licenses/>.
-*/
 #include <avr/pgmspace.h>
 
 //#define DEBUG_PIN		// Use pin TX for AVR and SPI_CS for STM32 => DEBUG_PIN_on, DEBUG_PIN_off, DEBUG_PIN_toggle

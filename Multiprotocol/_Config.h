@@ -24,7 +24,6 @@
 //An example is given within the file named "_MyConfig.h.example" which needs to be renamed if you want to use it.
 //To enable this config file remove the // from the line below.
 //#define USE_MY_CONFIG
-#define STM32_BOARD
 
 
 /*************************/
@@ -150,7 +149,7 @@
 
 //The protocols below need an A7105 to be installed
 #define	AFHDS2A_A7105_INO
-//#define	FLYSKY_A7105_INO
+#define	FLYSKY_A7105_INO
 #define	HUBSAN_A7105_INO
 //#define	BUGS_A7105_INO
 
@@ -158,7 +157,7 @@
 #define	ASSAN_NRF24L01_INO
 #define	BAYANG_NRF24L01_INO
 #define	CABELL_NRF24L01_INO
-// #define	CFLIE_NRF24L01_INO
+#define	CFLIE_NRF24L01_INO
 #define	CG023_NRF24L01_INO
 #define	CX10_NRF24L01_INO		// Include Q2X2 protocol
 #define	DM002_NRF24L01_INO
