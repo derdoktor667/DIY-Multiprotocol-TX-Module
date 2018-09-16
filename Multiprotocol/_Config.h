@@ -1,17 +1,3 @@
-/*
- This project is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-
- Multiprotocol is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with Multiprotocol.  If not, see <http://www.gnu.org/licenses/>.
- */
 
 /**********************************************/
 /** Multiprotocol module configuration file ***/
@@ -25,7 +11,6 @@
 //To enable this config file remove the // from the line below.
 //#define USE_MY_CONFIG
 
-
 /*************************/
 /*** BOOTLOADER USE     ***/
 /*************************/
@@ -33,7 +18,6 @@
 //Instructions: https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/tree/master/BootLoaders#compiling--uploading-firmware-with-the-flash-from-tx-bootloader
 //To enable this feature remove the "//" on the next line.  Requires a compatible bootloader or upload method to be selected when you use the Multi 4-in-1 Boards Manager definitions.
 //#define CHECK_FOR_BOOTLOADER
-
 
 /*******************/
 /*** TX SETTINGS ***/
@@ -53,7 +37,6 @@
 //For more throw, 1024..1976us @100% and 904..2096us @125%, remove the "//" on the line below. Be aware that too much throw can damage some UMX servos. To achieve standard throw in this mode use a channel weight of 84%.
 //#define DSM_MAX_THROW
 
-
 /*****************/
 /*** AUTO BIND ***/  // Also referred as "Bind on powerup"
 /*****************/
@@ -61,6 +44,7 @@
 // if you specify AUTOBIND in PPM mode or set AutoBind to YES for serial mode. It also requires that the throttle channel is low.
 //Comment to globaly disable the bind feature from a channel.
 #define ENABLE_BIND_CH
+
 //Set the channel number used for bind. Default is 16.
 #define BIND_CH	16
 
@@ -68,7 +52,6 @@
 // the selected protocol unless a bind is requested using bind from channel or the GUI "Bind" button.
 //The goal is to prevent binding other people's model when powering up the TX, changing model or scanning through protocols.
 #define WAIT_FOR_BIND
-
 
 /****************/
 /*** RF CHIPS ***/
@@ -122,7 +105,6 @@
 //#define CC2500_ENABLE_LOW_POWER
 //#define NRF24L01_ENABLE_LOW_POWER
 
-
 /*****************/
 /*** GLOBAL ID ***/
 /*****************/
@@ -138,7 +120,6 @@
 // then you can force the ID to a certain known value using the lines below.
 //Default is commented, you should uncoment only for test purpose or if you know exactly what you are doing!!!
 //#define FORCE_CYRF_ID	"\x12\x34\x56\x78\x9A\xBC"
-
 
 /****************************/
 /*** PROTOCOLS TO INCLUDE ***/
@@ -179,7 +160,6 @@
 #define	V2X2_NRF24L01_INO
 #define	YD717_NRF24L01_INO
 
-
 /**************************/
 /*** FAILSAFE SETTINGS  ***/
 /**************************/
@@ -200,7 +180,6 @@
 // Option a. is the default since you have a protection even if no failsafe has been set on the radio.
 // You can force option b. by uncommenting the line below (remove the "//").
 //#define FAILSAFE_SERIAL_ONLY
-
 
 /**************************/
 /*** TELEMETRY SETTINGS ***/
@@ -245,7 +224,6 @@
 //!!!! This is a work in progress!!! Do not enable unless you want to test and report
 //#define SPORT_POLLING
 
-
 /****************************/
 /*** SERIAL MODE SETTINGS ***/
 /****************************/
@@ -255,7 +233,6 @@
 
 //If you do not plan to use the Serial mode comment this line using "//" to save Flash space
 #define ENABLE_SERIAL
-
 
 /*************************/
 /*** PPM MODE SETTINGS ***/
