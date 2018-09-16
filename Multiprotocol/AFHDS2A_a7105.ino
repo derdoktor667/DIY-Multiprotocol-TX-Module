@@ -31,7 +31,6 @@ enum{
 	AFHDS2A_BIND2,
 	AFHDS2A_BIND3,
 	AFHDS2A_BIND4,
-	AFHDS2A_DATA_INIT,
 	AFHDS2A_DATA,
 };
 
@@ -81,7 +80,6 @@ enum{
 	AFHDS2A_SENSOR_RX_RSSI      = 0xfc,
 	AFHDS2A_SENSOR_RX_NOISE     = 0xfb,
 	AFHDS2A_SENSOR_RX_SNR       = 0xfa,
-	AFHDS2A_SENSOR_A3_VOLTAGE   = 0x03,
 };
 
 static void AFHDS2A_update_telemetry()
@@ -110,10 +108,6 @@ static void AFHDS2A_update_telemetry()
 			case AFHDS2A_SENSOR_RX_VOLTAGE:
 				//v_lipo1 = packet[index+3]<<8 | packet[index+2];
 				v_lipo1 = packet[index+2];
-				telemetry_link=1;
-				break;
-			case AFHDS2A_SENSOR_A3_VOLTAGE:
-				v_lipo2 = (packet[index+3]<<5) | (packet[index+2]>>3);	// allows to read voltage up to 4S
 				telemetry_link=1;
 				break;
 			case AFHDS2A_SENSOR_RX_ERR_RATE:
@@ -232,8 +226,8 @@ static void AFHDS2A_build_packet(uint8_t type)
 #define AFHDS2A_WAIT_WRITE 0x80
 uint16_t ReadAFHDS2A()
 {
-	static uint8_t packet_type;
-	static uint16_t packet_counter;
+	static uint8_t packet_type = AFHDS2A_PACKET_STICKS;
+	static uint16_t packet_counter=0;
 	uint8_t data_rx;
 	uint16_t start;
 	#ifndef FORCE_AFHDS2A_TUNING
@@ -251,8 +245,9 @@ uint16_t ReadAFHDS2A()
 				A7105_ReadData(AFHDS2A_RXPACKET_SIZE);
 				if(packet[0] == 0xbc && packet[9] == 0x01)
 				{
-					uint8_t temp=AFHDS2A_EEPROM_OFFSET+RX_num*4;
-					for(uint8_t i=0; i<4; i++)
+					uint8_t temp=50+RX_num*4;
+					uint8_t i;
+					for(i=0; i<4; i++)
 					{
 						rx_id[i] = packet[5+i];
 						eeprom_write_byte((EE_ADDR)(temp+i),rx_id[i]);
@@ -288,16 +283,14 @@ uint16_t ReadAFHDS2A()
 			bind_phase++;
 			if(bind_phase>=4)
 			{ 
+				packet_counter=0;
+				packet_type = AFHDS2A_PACKET_STICKS;
 				hopping_frequency_no=1;
-				phase = AFHDS2A_DATA_INIT;
+				phase = AFHDS2A_DATA;
 				BIND_DONE;
-			}
+			}                        
 			return 3850;
-		case AFHDS2A_DATA_INIT:
-			packet_counter=0;
-			packet_type = AFHDS2A_PACKET_STICKS;
-			phase = AFHDS2A_DATA;
-		case AFHDS2A_DATA:
+		case AFHDS2A_DATA:    
 			AFHDS2A_build_packet(packet_type);
 			if((A7105_ReadReg(A7105_00_MODE) & 0x01))		// Check if something has been received...
 				data_rx=0;
@@ -366,7 +359,7 @@ uint16_t initAFHDS2A()
 		phase = AFHDS2A_BIND1;
 	else
 	{
-		phase = AFHDS2A_DATA_INIT;
+		phase = AFHDS2A_DATA;
 		//Read RX ID from EEPROM based on RX_num, RX_num must be uniq for each RX
 		uint8_t temp=AFHDS2A_EEPROM_OFFSET+RX_num*4;
 		for(uint8_t i=0;i<4;i++)
