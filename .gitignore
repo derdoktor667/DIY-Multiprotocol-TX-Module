@@ -1,0 +1,8 @@
+
+## Visual Studio 
+Multiprotocol/Multiprotocol.vcxproj.filters
+Multiprotocol/Multiprotocol.vcxproj.user
+Multiprotocol/.vs/*
+Multiprotocol/__vm/*
+Multiprotocol/Release/*
+.vs/*
